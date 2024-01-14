@@ -55,7 +55,10 @@ def get_sos(player: Player) -> float:
             if m.is_bye == False
         ]
     )
-    return round(opp_average_score / max(get_record(player)["games_played"], 1), 3)
+    num_opponents = len([m for m in player.runner_matches if not m.is_bye]) + len(
+        player.corp_matches
+    )
+    return round(opp_average_score / max(num_opponents, 1), 3)
 
 
 def get_esos(player: Player) -> float:
